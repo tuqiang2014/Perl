@@ -94,7 +94,7 @@ close OUT;
 ### 第二题
  
 #### 流程规划
-
+```
 1. 用分组信息gmderoup.list 将分组信息存入数组/哈希中   #数组还是哈希你要选择一种 #用数组吧
 unless(@ARGV ==3 ){
 	die "Usage perl $0,<gmderoup.list>,<P.relative.xls>,<goup.P.relative.xls>";
@@ -125,7 +125,25 @@ while (IN1){
 	+ awk ?
 	
 3. 计算每一组的aver与sd,写一个子程序，输入数组，输出aver与sd
+sub aver {
+	
+	my(@ref)= @_;
+	my $sum = 0;
+	$sum = grep { $sum += $_} @erf;
+	my $aver = $sum/ @erf;
+	return $aver;
+}
+
+sub sd {
+    my $arr = shift;
+    my $v = aver($arr);
+    my $d = 0;
+    grep {$d += ($_-$v)**2;}@$arr;
+	$d = ($d/@$arr)**(1/2);
+    return $d;
+}
+	
 4. 格式的转化
 5. 输出 每一组的计算结果
 
-
+```
