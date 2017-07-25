@@ -28,7 +28,7 @@
 }
 my ($infile,$outfile) = @ARGV;
 open IN,'<',$infile or die $!;
-open OUt,'>',$outfile or die $!;
+open OUT,'>',$outfile or die $!;
 my $line_no=0;
 my ($num,%hash);
 while (<IN>) {
@@ -95,8 +95,30 @@ close OUT;
  
 #### 流程规划
 
-1. 用分组信息gmderoup.list 将分组信息存入数组/哈希中   #数组还是哈希你要选择一种
-2. 用P.relative.xls将其中的元素分组放在上一步数组/哈希中，嵌套结构的构建
+1. 用分组信息gmderoup.list 将分组信息存入数组/哈希中   #数组还是哈希你要选择一种 #用数组吧
+unless(@ARGV ==3 ){
+	die "Usage perl $0,<gmderoup.list>,<P.relative.xls>,<goup.P.relative.xls>";
+	}
+my ($infile1,$infile2,$outfile) = @ARGV;
+open IN1,'<',$infile1,or die $!;
+open IN2,'<',$infile2,or die $!;
+open OUT,'>',$outfile,or die $!;
+#################
+#分组信息如何确定？把编号放到分组中
+################
+my $line_no=0;
+while (IN1){
+	chomp;
+	my @arr = split /\t/ $_;
+	$line_no++;
+	#######################################
+	#换为下一组，当$line_no是某个数的倍数时
+	#怎样构建一个分组循环？有必要吗？
+	#######################################
+	
+	
+2. 用P.relative.xls将其中的元素分组放在上一步数组/哈希中
+	+ 嵌套结构的构建?
 	+ grep ?
 	+ cat ?
 	+ split ?
